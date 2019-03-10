@@ -20,6 +20,7 @@
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
         <liberty.server.version>19.0.0.2</liberty.server.version>
+        <env>dev</env>
     </properties>
 
     <build>
@@ -117,7 +118,8 @@
                             <type>zip</type>
                         </assemblyArtifact>
                         <serverName>${project.artifactId}</serverName>
-                        <configDirectory>src/liberty/config</configDirectory>
+                        <configFile>src/liberty/config/server.xml</configFile>
+                        <serverEnv>src/liberty/config/server.env.${env}</serverEnv>
                     </configuration>
                     <executions>
                         <execution>
@@ -174,6 +176,33 @@
             <version>${liberty.server.version}</version>
             <scope>provided</scope>
             <type>pom</type>
+        </dependency>
+
+        <!--Test Dependencies-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.openliberty.arquillian</groupId>
+            <artifactId>arquillian-liberty-managed</artifactId>
+            <version>1.0.4-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.arquillian.universe</groupId>
+            <artifactId>arquillian-junit</artifactId>
+            <version>1.2.0.1</version>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.11.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
